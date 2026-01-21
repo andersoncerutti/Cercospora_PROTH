@@ -194,6 +194,33 @@ summary(c_NBLS)
 check_model(c_NBLS)
 
 ```
+### Grafic NBLS
+
+```{r}
+ggplot(CERC_PROTH_data, aes(trt, fill = as.factor(NBLS))) +
+  geom_bar(position = "fill") +
+  facet_wrap(~ env) +
+  theme_bw() +
+  labs(
+    y = "plot ratio",
+    fill = "NBLS",
+    title = "Occurrence of NBLS by treatment"
+  )
+```
+
+```{r}
+ggplot(CERC_PROTH_data, aes(trt, NBLS)) +
+  geom_boxplot(outlier.alpha = 0.2) +
+  geom_jitter(width = 0.15, alpha = 0.3) +
+  facet_wrap(~ stage) +
+  theme_bw() +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(
+    title = "NBLS severity by treatmento",
+    x = "Treatment",
+    y = "NBLS score"
+  )
+```
 
 ### Lesion
 
@@ -225,17 +252,77 @@ check_model(c_yld_disease)
 
 ```
 
-### Emmeans
+### Grafic Yeald
 
 ```{r}
-emm_CPB <- emmeans(c_CPB, ~ trt | stage)
-cld(emm_CPB, Letters = letters, level = 0.05)
+p_yldh_trt_env <- ggplot(CERC_PROTH_data, aes(trt, yld_h)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width = 0.15, alpha = 0.25) +
+  facet_wrap(~ env, scales = "free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="Yield (yld_h) / treatment", x="trt", y="yld_h")
 
-emm_inc <- emmeans(c_inc, ~ trt | stage)
-cld(emm_inc, Letters = letters, level = 0.05)
+p_yldh_trt_env
+```
 
-plot(emm_CPB) + theme_bw() +
-  labs(title = "CPB control by treatment and stage")
+```{r}
+p_yldh_trt_stage <- ggplot(CERC_PROTH_data, aes(trt, yld_h)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width = 0.15, alpha = 0.25) +
+  facet_grid(stage ~ env, scales = "free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="yld_h / treatment, separated by stage and environment", x="trt", y="yld_h")
+
+p_yldh_trt_stage
+
+```
+
+```{r}
+p_yldh_NBLS <- ggplot(CERC_PROTH_data, aes(NBLS, yld_h)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width = 0.15, alpha = 0.25) +
+  facet_wrap(~ env, scales = "free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="Yield / NBLS", x="NBLS", y="yld_h")
+
+p_yldh_CPB <- ggplot(CERC_PROTH_data, aes(CPB, yld_h)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width = 0.15, alpha = 0.25) +
+  facet_grid(~ env, scales = "free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="Yield / CPB", x="CBP", y="yld_h")
+
+p_yldh_Nles <- ggplot(CERC_PROTH_data, aes(n_lesion, yld_h)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width = 0.15, alpha = 0.25) +
+  facet_grid(~ env, scales = "free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="Yield / Number of Lesion", x="N of lesion", y="yld_h")
+
+ p_yldh_NBLS / p_yldh_CPB / p_yldh_Nles
+
+```
+
+```{r}
+p_yldh_CPB <- ggplot(CERC_PROTH_data, aes(CPB, yld_h)) +
+  geom_point(alpha=0.35) +
+  geom_smooth(method="lm", se=FALSE) +
+  facet_wrap(~ env) +
+  labs(title="yld_h vs CPB", x="CPB", y="yld_h")
+
+p_yldh_NBLS <- ggplot(CERC_PROTH_data, aes(NBLS, yld_h)) +
+  geom_point(alpha=0.35) +
+  geom_smooth(method="lm", se=FALSE) +
+  facet_wrap(~ env) +
+  labs(title="yld_h vs NBLS", x="NBLS", y="yld_h")
+
+p_yldh_Nles <- ggplot(CERC_PROTH_data, aes(n_lesion, yld_h)) +
+  geom_point(alpha=0.35) +
+  geom_smooth(method="lm", se=FALSE) +
+  facet_wrap(~ env) +
+  labs(title="yld_h vs Number of Lesion", x="n_lesion", y="yld_h")
+
+p_yldh_CPB / p_yldh_NBLS / p_yldh_Nles
 
 ```
 
@@ -252,6 +339,7 @@ summary(c_total)
 anova(c_total)
 
 ```
+
 ### Head
 
 ```{r}
@@ -263,5 +351,93 @@ c_head <- lmer(
 
 summary(c_head)
 anova(c_head)
+
+```
+
+### Grafic Total / Head
+
+```{r}
+p_total_trt <- ggplot(CERC_PROTH_data, aes(trt, total)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width=0.15, alpha=0.25) +
+  facet_wrap(~ env, scales="free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="Total (%) / treatment", x="trt", y="total")
+
+p_head_trt <- ggplot(CERC_PROTH_data, aes(trt, head)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width=0.15, alpha=0.25) +
+  facet_wrap(~ env, scales="free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="Head (%) / treatment", x="trt", y="head")
+
+p_total_trt / p_head_trt
+
+```
+
+```{r}
+p_total_CPB <- ggplot(CERC_PROTH_data, aes(CPB, total)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width=0.15, alpha=0.25) +
+  facet_wrap(~ env, scales="free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="Total (%) / CPB(0-9)", x="CPB", y="total")
+
+p_head_CPB <- ggplot(CERC_PROTH_data, aes(CPB, head)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width=0.15, alpha=0.25) +
+  facet_wrap(~ env, scales="free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="Head (%) / CPB (0-9)", x="CPB", y="head")
+
+p_total_CPB / p_head_CPB 
+
+```
+
+```{r}
+p_total_NBLS <- ggplot(CERC_PROTH_data, aes(NBLS, total)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width=0.15, alpha=0.25) +
+  facet_wrap(~ env, scales="free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="Total (%) / NBLS (0-9)", x="NBLS", y="total")
+
+p_head_NBLS <- ggplot(CERC_PROTH_data, aes(NBLS, head)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  geom_jitter(width=0.15, alpha=0.25) +
+  facet_wrap(~ env, scales="free_y") +
+  theme(axis.text.x = element_text(hjust=1)) +
+  labs(title="Head (%) / NBLS (0-9)", x="NBLS", y="head")
+
+p_total_NBLS / p_head_NBLS 
+
+```
+
+### Emmeans
+
+```{r}
+emm_inc <- emmeans(c_inc, ~ trt | stage)
+cld(emm_inc, Letters = letters, level = 0.05)
+
+emm_CPB <- emmeans(c_CPB, ~ trt | stage)
+cld(emm_CPB, Letters = letters, level = 0.05)
+
+emm_NBLS <- emmeans(c_NBLS, ~ trt | stage)
+cld(emm_NBLS, Letters = letters, level = 0.05)
+
+emm_nles <- emmeans(c_nles, ~ trt | stage)
+cld(emm_nles, Letters = letters, level = 0.05)
+
+plot(emm_CPB) + theme_bw() +
+  labs(title = "CPB control by treatment and stage")
+
+plot(emm_inc) + theme_bw()
+labs(title = "Incidence by treatment and stage")
+
+plot(emm_NBLS) + theme_bw()
+labs(title = "NBLS control by treatment and stage")
+
+plot(emm_nles) + theme_bw()
+labs(title = "Lesion by treatment and stage")
 
 ```
