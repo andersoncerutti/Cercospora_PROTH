@@ -3,7 +3,9 @@ title: "Analysis Cercospora Proth"
 author: "Anderson Cerutti"
 format: html
 editor: visual
-date: "January 20 2026"
+message: false
+warning: false
+date: "25 February"
 output: 
   html_document:
     toc: yes
@@ -41,9 +43,11 @@ conflicted::conflict_prefer("filter", "dplyr")
 
 ## Data
 
+PROTH_desc
+
 ```{r}
 PROTH_data <- readxl::read_xlsx("Data/Cercospora_PROTH_measure.xlsx","PROTH")
-PROTH_desc <- readxl::read_xlsx("Data/Cercospora_PROTH_description.xlsx","PROTH")
+PROTH_desc <- readxl::read_xlsx("Data/Cercospora_PROTH_description.xlsx", "PROTH")
 ```
 
 ```{r}
@@ -61,383 +65,86 @@ n_lesion_plot <- PROTH_data_disease %>%
 
 PROTH_yield_data <- PROTH_data_yield %>% 
   mutate(
-    yld_a = weight * ((1-(moist/100))/(1-0.12))*(43560/(4.66*16)),
-    yld_h = yld_a * 1.12085) %>% 
-    dplyr::select(year, trial_ID, trial, env, field, plot, blk, trt, 
-                  gen, stage, rate, total, head, yld_a, yld_h, NBLS)
+     yld = weight_12/(80/43560), 
+     kg_ha = yld*1.2085) %>% 
+  dplyr::select(year, trial_ID, trial, env, field, plot, blk, trt, 
+                  gen, fung, stage, rate, total, head, yld, kg_ha, NBLS)
 
 CERC_PROTH_data <- right_join(PROTH_yield_data, n_lesion_plot,
                   by = c("year","trial_ID","plot")) %>%
                   filter(!field %in% c("WIN")) %>%
   mutate(
-    pressure = ifelse(inc > 64, "high", "low"))
+    pressure = ifelse(inc > median(inc), "high", "low"))
 
+CERC_PROTH_data
 ```
 
 ## Analysis
 
-### EDA
+### Descriptive
+
 ```{r}
-ggplot(CERC_PROTH_data, aes(trt, inc)) +
-  geom_boxplot(outlier.alpha = 0.2) +
-  geom_jitter(width = 0.15, alpha = 0.3) +
-  facet_wrap(~ stage) +
+# Produtividade
+ggplot(CERC_PROTH_data, aes(x = rate, y = kg_ha, color = trt)) +
+  geom_boxplot() +
+  geom_point(size=2) +
+  geom_smooth(method = "lm", se = FALSE) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(
-    title = "Incidence of Cercospora (%) by treatment",
-    subtitle = "High pressure of the disease",
-    x = "Treatment",
-    y = "Incidence (%)"
-  )
-
+  facet_wrap(~env)
 ```
-### Grafic CBP
 
 ```{r}
-p_CPB_trt <- ggplot(CERC_PROTH_data, aes(trt, CPB)) +
-  geom_boxplot(outlier.alpha = 0.2) +
-  geom_jitter(width = 0.15, alpha = 0.25) +
-  facet_wrap(~ env, scales = "free_y") +
+
+# Produtividade X Rate (BLK)
+ggplot(CERC_PROTH_data, aes(x = rate, y = kg_ha, color = trt)) +
+  geom_boxplot() +
+  geom_point(size=2) +
+  geom_smooth(method = "lm", se = FALSE) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle=45, hjust=1)) +
-  labs(title="CPB per treatment (Environment)", x="trt", y="CPB")
-
-p_inc_trt <- ggplot(CERC_PROTH_data, aes(trt, inc)) +
-  geom_boxplot(outlier.alpha = 0.2) +
-  geom_jitter(width = 0.15, alpha = 0.25) +
-  facet_wrap(~ env, scales = "free_y") +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle=45, hjust=1)) +
-  labs(title="Incidence by treatment (Environment)", x="trt", y="inc")
-
-p_press_CPB <- ggplot(CERC_PROTH_data, aes(pressure, CPB, color = trt)) +
-  geom_point(alpha = 0.35) +
-  geom_smooth(method="lm", se=FALSE) +
-  facet_wrap(~ env) +
-  theme_bw() +
-  labs(title="Pressure × CPB (trt)", x="pressure", y="CPB")
-
-(p_CPB_trt / p_inc_trt / p_press_CPB)
-
-```
-### Grafic NBLS
-
-```{r}
-p_NBLS_trt <- ggplot(CERC_PROTH_data, aes(trt, NBLS)) +
-  geom_boxplot(outlier.alpha = 0.2) +
-  geom_jitter(width = 0.15, alpha = 0.25) +
-  facet_wrap(~ env, scales = "free_y") +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle=45, hjust=1)) +
-  labs(title="NBLS per treatment (Environment)", x="trt", y="NBLS")
-
-p_inc_trt <- ggplot(CERC_PROTH_data, aes(trt, inc)) +
-  geom_boxplot(outlier.alpha = 0.2) +
-  geom_jitter(width = 0.15, alpha = 0.25) +
-  facet_wrap(~ env, scales = "free_y") +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle=45, hjust=1)) +
-  labs(title="Incidence by treatment (Environment)", x="trt", y="inc")
-
-p_press_NBLS <- ggplot(CERC_PROTH_data, aes(pressure, NBLS, color = trt)) +
-  geom_point(alpha = 0.35) +
-  geom_smooth(method="lm", se=FALSE) +
-  facet_wrap(~ env) +
-  theme_bw() +
-  labs(title="Pressure × NBLS (trt)", x="pressure", y="NBLS")
-
-(p_NBLS_trt / p_inc_trt / p_press_NBLS)
-
-```
-
-### Incidence
-
-```{r}
-c_inc <- lmer(
-  inc ~ trt * stage + gen + pressure +
-      (1 | env) + (1 | env:blk),
-  data = CERC_PROTH_data
-)
-
-anova(c_inc)
-summary(c_inc)
-check_model(c_inc)
-
-```
-
-### Severity (CBP)
-
-```{r}
-c_CPB <- lmer(
-  CPB ~ trt * stage + gen + pressure +
-     (1 | env) + (1 | env:blk),
-  data = CERC_PROTH_data
-)
-
-anova(c_CPB)
-summary(c_CPB)
-check_model(c_CPB)
-
-```
-### NBLS
-
-```{r}
-c_NBLS <- lmer(
-  NBLS ~ trt * stage + gen + pressure +
-       (1 | env) + (1 | env:blk),
-  data = CERC_PROTH_data
-)
-
-anova(c_NBLS)
-summary(c_NBLS)
-check_model(c_NBLS)
-
-```
-### Grafic NBLS
-
-```{r}
-ggplot(CERC_PROTH_data, aes(trt, fill = as.factor(NBLS))) +
-  geom_bar(position = "fill") +
-  facet_wrap(~ env) +
-  theme_bw() +
-  labs(
-    y = "plot ratio",
-    fill = "NBLS",
-    title = "Occurrence of NBLS by treatment"
-  )
+  facet_wrap(~blk)
 ```
 
 ```{r}
-ggplot(CERC_PROTH_data, aes(trt, NBLS)) +
-  geom_boxplot(outlier.alpha = 0.2) +
-  geom_jitter(width = 0.15, alpha = 0.3) +
-  facet_wrap(~ stage) +
-  theme_bw() +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(
-    title = "NBLS severity by treatmento",
-    x = "Treatment",
-    y = "NBLS score"
-  )
-```
-
-### Lesion
-
-```{r}
-c_nles <- lmer(
-  n_lesion ~ trt * stage + gen + pressure +
-           (1 | env) + (1 | env:blk),
-  data = CERC_PROTH_data
-)
-
-anova(c_nles)
-summary(c_nles)
-check_model(c_nles)
-
-```
-
-### Yeald
-
-```{r}
-c_yld_disease <- lmer(
-  yld_h ~ NBLS + CPB + n_lesion + inc + gen + pressure +
-        (1 | env) + (1 | env:blk),
-  data = CERC_PROTH_data
-)
-
-anova(c_yld_disease)
-summary(c_yld_disease)
-check_model(c_yld_disease)
-
-```
-
-### Grafic Yeald
-
-```{r}
-p_yldh_trt_env <- ggplot(CERC_PROTH_data, aes(trt, yld_h)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width = 0.15, alpha = 0.25) +
-  facet_wrap(~ env, scales = "free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="Yield (yld_h) / treatment", x="trt", y="yld_h")
-
-p_yldh_trt_env
+# Relação entre CPB e produtividade
+ggplot(CERC_PROTH_data, aes(x = CPB, y = kg_ha, group = stage, color = stage)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal()
 ```
 
 ```{r}
-p_yldh_trt_stage <- ggplot(CERC_PROTH_data, aes(trt, yld_h)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width = 0.15, alpha = 0.25) +
-  facet_grid(stage ~ env, scales = "free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="yld_h / treatment, separated by stage and environment", x="trt", y="yld_h")
-
-p_yldh_trt_stage
-
+# Relação entre NBLS e produtividade
+ggplot(CERC_PROTH_data, aes(NBLS, kg_ha, group = stage, color = stage)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal()
 ```
 
 ```{r}
-p_yldh_NBLS <- ggplot(CERC_PROTH_data, aes(NBLS, yld_h)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width = 0.15, alpha = 0.25) +
-  facet_wrap(~ env, scales = "free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="Yield / NBLS", x="NBLS", y="yld_h")
-
-p_yldh_CPB <- ggplot(CERC_PROTH_data, aes(CPB, yld_h)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width = 0.15, alpha = 0.25) +
-  facet_grid(~ env, scales = "free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="Yield / CPB", x="CBP", y="yld_h")
-
-p_yldh_Nles <- ggplot(CERC_PROTH_data, aes(n_lesion, yld_h)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width = 0.15, alpha = 0.25) +
-  facet_grid(~ env, scales = "free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="Yield / Number of Lesion", x="N of lesion", y="yld_h")
-
- p_yldh_NBLS / p_yldh_CPB / p_yldh_Nles
-
+ggplot(CERC_PROTH_data, aes(x= pressure, kg_ha, group = pressure)) +
+  geom_boxplot()
 ```
 
-```{r}
-p_yldh_CPB <- ggplot(CERC_PROTH_data, aes(CPB, yld_h)) +
-  geom_point(alpha=0.35) +
-  geom_smooth(method="lm", se=FALSE) +
-  facet_wrap(~ env) +
-  labs(title="yld_h vs CPB", x="CPB", y="yld_h")
-
-p_yldh_NBLS <- ggplot(CERC_PROTH_data, aes(NBLS, yld_h)) +
-  geom_point(alpha=0.35) +
-  geom_smooth(method="lm", se=FALSE) +
-  facet_wrap(~ env) +
-  labs(title="yld_h vs NBLS", x="NBLS", y="yld_h")
-
-p_yldh_Nles <- ggplot(CERC_PROTH_data, aes(n_lesion, yld_h)) +
-  geom_point(alpha=0.35) +
-  geom_smooth(method="lm", se=FALSE) +
-  facet_wrap(~ env) +
-  labs(title="yld_h vs Number of Lesion", x="n_lesion", y="yld_h")
-
-p_yldh_CPB / p_yldh_NBLS / p_yldh_Nles
-
-```
-
-### Total
+### Fitting
 
 ```{r}
-c_total <- lmer(
-  total ~ gen * trt +
-       (1 | env) + (1 | env:blk),
-  data = CERC_PROTH_data
-)
+mix_yld  <- lmer(kg_ha ~ 1 + ( 1 | blk), data=CERC_PROTH_data, REML=F)
+mix_yld1 <- lmer(kg_ha ~ pressure + (pressure | blk), data=CERC_PROTH_data, REML=F)
+mix_yld2 <- lmer(kg_ha ~ pressure + (1 | pressure), data=CERC_PROTH_data, REML=F)
+mix_yld3 <- lmer(kg_ha ~ pressure + (1 | blk), data=CERC_PROTH_data, REML=F)
+mix_yld4 <- lmer(kg_ha ~ pressure + (1 | trt/blk), data=CERC_PROTH_data, REML=F)
+mix_yld5 <- lmer(kg_ha ~ pressure * rate * (1 | trt/blk), data=CERC_PROTH_data, REML=F)
+mix_yld6 <- lmer(kg_ha ~ pressure * rate * (1 | pressure/blk), data=CERC_PROTH_data, REML=F)
+mix_yld7 <- lmer(kg_ha ~ rate * (1 | trt/blk), data=CERC_PROTH_data, REML=F)
 
-summary(c_total)
-anova(c_total)
+AIC(mix_yld, mix_yld1, mix_yld2, mix_yld3, mix_yld4, mix_yld5, mix_yld6, mix_yld7)
+BIC(mix_yld, mix_yld1, mix_yld2, mix_yld3, mix_yld4, mix_yld5, mix_yld6, mix_yld7)
+anova(mix_yld5, mix_yld6)
+summary(mix_yld5)
+summary(mix_yld6)
+summary(mix_yld7)
 
-```
-
-### Head
-
-```{r}
-c_head <- lmer(
-  head ~ gen * trt +
-       (1 | env) + (1 | env:blk),
-  data = CERC_PROTH_data
-)
-
-summary(c_head)
-anova(c_head)
-
-```
-
-### Grafic Total / Head
-
-```{r}
-p_total_trt <- ggplot(CERC_PROTH_data, aes(trt, total)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width=0.15, alpha=0.25) +
-  facet_wrap(~ env, scales="free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="Total (%) / treatment", x="trt", y="total")
-
-p_head_trt <- ggplot(CERC_PROTH_data, aes(trt, head)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width=0.15, alpha=0.25) +
-  facet_wrap(~ env, scales="free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="Head (%) / treatment", x="trt", y="head")
-
-p_total_trt / p_head_trt
-
-```
-
-```{r}
-p_total_CPB <- ggplot(CERC_PROTH_data, aes(CPB, total)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width=0.15, alpha=0.25) +
-  facet_wrap(~ env, scales="free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="Total (%) / CPB(0-9)", x="CPB", y="total")
-
-p_head_CPB <- ggplot(CERC_PROTH_data, aes(CPB, head)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width=0.15, alpha=0.25) +
-  facet_wrap(~ env, scales="free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="Head (%) / CPB (0-9)", x="CPB", y="head")
-
-p_total_CPB / p_head_CPB 
-
-```
-
-```{r}
-p_total_NBLS <- ggplot(CERC_PROTH_data, aes(NBLS, total)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width=0.15, alpha=0.25) +
-  facet_wrap(~ env, scales="free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="Total (%) / NBLS (0-9)", x="NBLS", y="total")
-
-p_head_NBLS <- ggplot(CERC_PROTH_data, aes(NBLS, head)) +
-  geom_boxplot(outlier.alpha = 0.15) +
-  geom_jitter(width=0.15, alpha=0.25) +
-  facet_wrap(~ env, scales="free_y") +
-  theme(axis.text.x = element_text(hjust=1)) +
-  labs(title="Head (%) / NBLS (0-9)", x="NBLS", y="head")
-
-p_total_NBLS / p_head_NBLS 
-
-```
-
-### Emmeans
-
-```{r}
-emm_inc <- emmeans(c_inc, ~ trt | stage)
-cld(emm_inc, Letters = letters, level = 0.05)
-
-emm_CPB <- emmeans(c_CPB, ~ trt | stage)
-cld(emm_CPB, Letters = letters, level = 0.05)
-
-emm_NBLS <- emmeans(c_NBLS, ~ trt | stage)
-cld(emm_NBLS, Letters = letters, level = 0.05)
-
-emm_nles <- emmeans(c_nles, ~ trt | stage)
-cld(emm_nles, Letters = letters, level = 0.05)
-
-plot(emm_CPB) + theme_bw() +
-  labs(title = "CPB control by treatment and stage")
-
-plot(emm_inc) + theme_bw()
-labs(title = "Incidence by treatment and stage")
-
-plot(emm_NBLS) + theme_bw()
-labs(title = "NBLS control by treatment and stage")
-
-plot(emm_nles) + theme_bw()
-labs(title = "Lesion by treatment and stage")
+YLD_emm_kg <- emmeans(mix_yld5, ~ rate * pressure)
+print(cld(YLD_emm_kg, alpha = 0.05, Letters = letters))
 
 ```

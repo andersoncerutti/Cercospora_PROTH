@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Anderson Cerutti">
-<meta name="dcterms.date" content="2026-01-20">
+<meta name="dcterms.date" content="2001-02-25">
 <meta name="description" content="some description …">
 
 <title>Analysis Cercospora Proth</title>
@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 20, 2026</p>
+      <p class="date">February 25, 2001</p>
     </div>
   </div>
   
@@ -121,164 +121,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.6
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.1     ✔ tibble    3.3.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.2
-✔ purrr     1.2.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: Matrix
-
-Attaching package: 'Matrix'
-
-The following objects are masked from 'package:tidyr':
-
-    expand, pack, unpack</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Welcome to emmeans.
-Caution: You lose important information if you filter this package's results.
-See '? untidy'</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: carData
-
-Attaching package: 'car'
-
-The following object is masked from 'package:dplyr':
-
-    recode
-
-The following object is masked from 'package:purrr':
-
-    some</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'sjPlot'
-
-The following object is masked from 'package:ggplot2':
-
-    set_theme</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'flextable'
-
-The following object is masked from 'package:purrr':
-
-    compose</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: mvtnorm
-Loading required package: survival
-Loading required package: TH.data
-Loading required package: MASS
-
-Attaching package: 'MASS'
-
-The following object is masked from 'package:patchwork':
-
-    area
-
-The following object is masked from 'package:dplyr':
-
-    select
-
-
-Attaching package: 'TH.data'
-
-The following object is masked from 'package:MASS':
-
-    geyser</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcompView)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>conflicted<span class="sc">::</span><span class="fu">conflict_prefer</span>(<span class="st">"select"</span>, <span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[conflicted] Will prefer dplyr::select over any other package.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>conflicted<span class="sc">::</span><span class="fu">conflict_prefer</span>(<span class="st">"filter"</span>, <span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[conflicted] Will prefer dplyr::filter over any other package.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcompView)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>conflicted<span class="sc">::</span><span class="fu">conflict_prefer</span>(<span class="st">"select"</span>, <span class="st">"dplyr"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>conflicted<span class="sc">::</span><span class="fu">conflict_prefer</span>(<span class="st">"filter"</span>, <span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>PROTH_desc</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>PROTH_data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(<span class="st">"Data/Cercospora_PROTH_measure.xlsx"</span>,<span class="st">"PROTH"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>PROTH_desc <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(<span class="st">"Data/Cercospora_PROTH_description.xlsx"</span>,<span class="st">"PROTH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>PROTH_data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(<span class="st">"Data/Cercospora_PROTH_measure.xlsx"</span>,<span class="st">"PROTH"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>PROTH_desc <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(<span class="st">"Data/Cercospora_PROTH_description.xlsx"</span>, <span class="st">"PROTH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>PROTH_data_disease <span class="ot">&lt;-</span>  PROTH_data</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>PROTH_data_yield   <span class="ot">&lt;-</span>  PROTH_desc</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>n_lesion_plot <span class="ot">&lt;-</span> PROTH_data_disease <span class="sc">%&gt;%</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lesion_n <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, trial_ID, plot) <span class="sc">%&gt;%</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">CPB =</span> <span class="fu">mean</span>(CPB, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_lesion =</span> <span class="fu">n</span>(),</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>,</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">inc  =</span> (n_lesion <span class="sc">*</span> <span class="dv">100</span>)<span class="sc">/</span><span class="dv">50</span>)</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>PROTH_yield_data <span class="ot">&lt;-</span> PROTH_data_yield <span class="sc">%&gt;%</span> </span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">yld_a =</span> weight <span class="sc">*</span> ((<span class="dv">1</span><span class="sc">-</span>(moist<span class="sc">/</span><span class="dv">100</span>))<span class="sc">/</span>(<span class="dv">1</span><span class="fl">-0.12</span>))<span class="sc">*</span>(<span class="dv">43560</span><span class="sc">/</span>(<span class="fl">4.66</span><span class="sc">*</span><span class="dv">16</span>)),</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">yld_h =</span> yld_a <span class="sc">*</span> <span class="fl">1.12085</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(year, trial_ID, trial, env, field, plot, blk, trt, </span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>                  gen, stage, rate, total, head, yld_a, yld_h, NBLS)</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>CERC_PROTH_data <span class="ot">&lt;-</span> <span class="fu">right_join</span>(PROTH_yield_data, n_lesion_plot,</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>                  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span>,<span class="st">"trial_ID"</span>,<span class="st">"plot"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">filter</span>(<span class="sc">!</span>field <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"WIN"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">pressure =</span> <span class="fu">ifelse</span>(inc <span class="sc">&gt;</span> <span class="dv">64</span>, <span class="st">"high"</span>, <span class="st">"low"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>PROTH_data_disease <span class="ot">&lt;-</span>  PROTH_data</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>PROTH_data_yield   <span class="ot">&lt;-</span>  PROTH_desc</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>n_lesion_plot <span class="ot">&lt;-</span> PROTH_data_disease <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lesion_n <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, trial_ID, plot) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">CPB =</span> <span class="fu">mean</span>(CPB, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_lesion =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">inc  =</span> (n_lesion <span class="sc">*</span> <span class="dv">100</span>)<span class="sc">/</span><span class="dv">50</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>PROTH_yield_data <span class="ot">&lt;-</span> PROTH_data_yield <span class="sc">%&gt;%</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">yld =</span> weight_12<span class="sc">/</span>(<span class="dv">80</span><span class="sc">/</span><span class="dv">43560</span>), </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">kg_ha =</span> yld<span class="sc">*</span><span class="fl">1.2085</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(year, trial_ID, trial, env, field, plot, blk, trt, </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                  gen, fung, stage, rate, total, head, yld, kg_ha, NBLS)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>CERC_PROTH_data <span class="ot">&lt;-</span> <span class="fu">right_join</span>(PROTH_yield_data, n_lesion_plot,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span>,<span class="st">"trial_ID"</span>,<span class="st">"plot"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">filter</span>(<span class="sc">!</span>field <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"WIN"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">pressure =</span> <span class="fu">ifelse</span>(inc <span class="sc">&gt;</span> <span class="fu">median</span>(inc), <span class="st">"high"</span>, <span class="st">"low"</span>))</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>CERC_PROTH_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 65 × 21
+    year trial_ID    trial env   field  plot   blk   trt gen   fung  stage rate 
+   &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1  2024 24-CER_PRO… CER_… P2C3  RRS2    101     1     5 PVL03 proth B+H   1x   
+ 2  2024 24-CER_PRO… CER_… P2C3  RRS2    102     2     4 PVL03 proth B     4x   
+ 3  2024 24-CER_PRO… CER_… P2C3  RRS2    103     3     3 PVL03 proth B     2x   
+ 4  2024 24-CER_PRO… CER_… P2C3  RRS2    104     4     1 PVL03 UTC   UTC   UTC  
+ 5  2024 24-CER_PRO… CER_… P2C3  RRS2    201     1     3 PVL03 proth B     2x   
+ 6  2024 24-CER_PRO… CER_… P2C3  RRS2    202     2     1 PVL03 UTC   UTC   UTC  
+ 7  2024 24-CER_PRO… CER_… P2C3  RRS2    203     3     2 PVL03 proth B     1x   
+ 8  2024 24-CER_PRO… CER_… P2C3  RRS2    204     4     3 PVL03 proth B     2x   
+ 9  2024 24-CER_PRO… CER_… P2C3  RRS2    301     1     4 PVL03 proth B     4x   
+10  2024 24-CER_PRO… CER_… P2C3  RRS2    302     2     2 PVL03 proth B     1x   
+# ℹ 55 more rows
+# ℹ 9 more variables: total &lt;chr&gt;, head &lt;chr&gt;, yld &lt;dbl&gt;, kg_ha &lt;dbl&gt;,
+#   NBLS &lt;chr&gt;, CPB &lt;dbl&gt;, n_lesion &lt;int&gt;, inc &lt;dbl&gt;, pressure &lt;chr&gt;</code></pre>
+</div>
 </div>
 </section>
 <section id="analysis" class="level2">
 <h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
-<section id="eda" class="level3">
-<h3 class="anchored" data-anchor-id="eda">EDA</h3>
+<section id="descriptive" class="level3">
+<h3 class="anchored" data-anchor-id="descriptive">Descriptive</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, inc)) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> stage) <span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Incidence of Cercospora (%) by treatment"</span>,</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"High pressure of the disease"</span>,</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Treatment"</span>,</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Incidence (%)"</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Produtividade</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> kg_ha, <span class="at">color =</span> trt)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -287,53 +211,14 @@ continuous. Picking default orientation 'x'.</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="grafic-cbp" class="level3">
-<h3 class="anchored" data-anchor-id="grafic-cbp">Grafic CBP</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>p_CPB_trt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, CPB)) <span class="sc">+</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"CPB per treatment (Environment)"</span>, <span class="at">x=</span><span class="st">"trt"</span>, <span class="at">y=</span><span class="st">"CPB"</span>)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>p_inc_trt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, inc)) <span class="sc">+</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Incidence by treatment (Environment)"</span>, <span class="at">x=</span><span class="st">"trt"</span>, <span class="at">y=</span><span class="st">"inc"</span>)</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>p_press_CPB <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(pressure, CPB, <span class="at">color =</span> trt)) <span class="sc">+</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.35</span>) <span class="sc">+</span></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env) <span class="sc">+</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Pressure × CPB (trt)"</span>, <span class="at">x=</span><span class="st">"pressure"</span>, <span class="at">y=</span><span class="st">"CPB"</span>)</span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>(p_CPB_trt <span class="sc">/</span> p_inc_trt <span class="sc">/</span> p_press_CPB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Produtividade X Rate (BLK)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> kg_ha, <span class="at">color =</span> trt)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>blk)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -342,53 +227,12 @@ continuous. Picking default orientation 'x'.</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="grafic-nbls" class="level3">
-<h3 class="anchored" data-anchor-id="grafic-nbls">Grafic NBLS</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>p_NBLS_trt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, NBLS)) <span class="sc">+</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"NBLS per treatment (Environment)"</span>, <span class="at">x=</span><span class="st">"trt"</span>, <span class="at">y=</span><span class="st">"NBLS"</span>)</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>p_inc_trt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, inc)) <span class="sc">+</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Incidence by treatment (Environment)"</span>, <span class="at">x=</span><span class="st">"trt"</span>, <span class="at">y=</span><span class="st">"inc"</span>)</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>p_press_NBLS <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(pressure, NBLS, <span class="at">color =</span> trt)) <span class="sc">+</span></span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.35</span>) <span class="sc">+</span></span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env) <span class="sc">+</span></span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Pressure × NBLS (trt)"</span>, <span class="at">x=</span><span class="st">"pressure"</span>, <span class="at">y=</span><span class="st">"NBLS"</span>)</span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>(p_NBLS_trt <span class="sc">/</span> p_inc_trt <span class="sc">/</span> p_press_NBLS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Relação entre CPB e produtividade</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(<span class="at">x =</span> CPB, <span class="at">y =</span> kg_ha, <span class="at">group =</span> stage, <span class="at">color =</span> stage)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -397,74 +241,12 @@ continuous. Picking default orientation 'x'.</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="incidence" class="level3">
-<h3 class="anchored" data-anchor-id="incidence">Incidence</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>c_inc <span class="ot">&lt;-</span> <span class="fu">lmer</span>(</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  inc <span class="sc">~</span> trt <span class="sc">*</span> stage <span class="sc">+</span> gen <span class="sc">+</span> pressure <span class="sc">+</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>      (<span class="dv">1</span> <span class="sc">|</span> env) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> env<span class="sc">:</span>blk),</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> CERC_PROTH_data</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>fixed-effect model matrix is rank deficient so dropping 1 column / coefficient</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>boundary (singular) fit: see help('isSingular')</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c_inc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-          npar  Sum Sq Mean Sq F value
-trt          1    7.56    7.56  0.5875
-stage        2  125.55   62.78  4.8749
-gen          1    0.12    0.12  0.0095
-pressure     1 1035.22 1035.22 80.3895
-trt:stage    1    0.30    0.30  0.0234</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c_inc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML ['lmerMod']
-Formula: inc ~ trt * stage + gen + pressure + (1 | env) + (1 | env:blk)
-   Data: CERC_PROTH_data
-
-REML criterion at convergence: 332.4
-
-Scaled residuals: 
-    Min      1Q  Median      3Q     Max 
--4.7314 -0.2123  0.0195  0.4168  1.5315 
-
-Random effects:
- Groups   Name        Variance Std.Dev.
- env:blk  (Intercept)  0.00    0.000   
- env      (Intercept) 17.35    4.165   
- Residual             12.88    3.589   
-Number of obs: 65, groups:  env:blk, 11; env, 3
-
-Fixed effects:
-             Estimate Std. Error t value
-(Intercept)   96.4764     3.9120  24.662
-trt            0.2810     0.8059   0.349
-stageB+H      -5.3335     8.8279  -0.604
-stageUTC      -0.8872     2.0875  -0.425
-genPVL03      -1.3660     5.1870  -0.263
-pressurelow  -34.1467     3.8235  -8.931
-trt:stageB+H   0.2645     1.7294   0.153
-
-Correlation of Fixed Effects:
-            (Intr) trt    stgB+H stgUTC gPVL03 prssrl
-trt         -0.631                                   
-stageB+H    -0.189  0.280                            
-stageUTC    -0.554  0.797  0.246                     
-genPVL03    -0.442 -0.002 -0.001 -0.002              
-pressurelow -0.185  0.230  0.077  0.237  0.018       
-trt:stagB+H  0.294 -0.466 -0.974 -0.372  0.001 -0.107
-fit warnings:
-fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
-optimizer (nloptwrap) convergence code: 0 (OK)
-boundary (singular) fit: see help('isSingular')</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(c_inc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Relação entre NBLS e produtividade</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(NBLS, kg_ha, <span class="at">group =</span> stage, <span class="at">color =</span> stage)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -473,74 +255,9 @@ boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="severity-cbp" class="level3">
-<h3 class="anchored" data-anchor-id="severity-cbp">Severity (CBP)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>c_CPB <span class="ot">&lt;-</span> <span class="fu">lmer</span>(</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  CPB <span class="sc">~</span> trt <span class="sc">*</span> stage <span class="sc">+</span> gen <span class="sc">+</span> pressure <span class="sc">+</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>     (<span class="dv">1</span> <span class="sc">|</span> env) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> env<span class="sc">:</span>blk),</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> CERC_PROTH_data</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>fixed-effect model matrix is rank deficient so dropping 1 column / coefficient</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>boundary (singular) fit: see help('isSingular')</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c_CPB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-          npar Sum Sq Mean Sq F value
-trt          1 2.0093  2.0093  1.6402
-stage        2 6.7753  3.3877  2.7654
-gen          1 9.9272  9.9272  8.1036
-pressure     1 0.5447  0.5447  0.4446
-trt:stage    1 0.0069  0.0069  0.0056</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c_CPB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML ['lmerMod']
-Formula: CPB ~ trt * stage + gen + pressure + (1 | env) + (1 | env:blk)
-   Data: CERC_PROTH_data
-
-REML criterion at convergence: 192.7
-
-Scaled residuals: 
-     Min       1Q   Median       3Q      Max 
--1.80027 -0.83700 -0.04402  0.64770  2.52250 
-
-Random effects:
- Groups   Name        Variance Std.Dev.
- env:blk  (Intercept) 0.000    0.000   
- env      (Intercept) 0.000    0.000   
- Residual             1.225    1.107   
-Number of obs: 65, groups:  env:blk, 11; env, 3
-
-Fixed effects:
-             Estimate Std. Error t value
-(Intercept)   1.80928    0.79150   2.286
-trt           0.25846    0.24833   1.041
-stageB+H     -1.15303    2.72251  -0.424
-stageUTC      0.32908    0.64325   0.512
-genPVL03     -0.83458    0.28840  -2.894
-pressurelow  -0.75953    1.15930  -0.655
-trt:stageB+H -0.03997    0.53329  -0.075
-
-Correlation of Fixed Effects:
-            (Intr) trt    stgB+H stgUTC gPVL03 prssrl
-trt         -0.959                                   
-stageB+H    -0.286  0.280                            
-stageUTC    -0.842  0.797  0.245                     
-genPVL03    -0.113 -0.017 -0.006 -0.017              
-pressurelow -0.272  0.227  0.076  0.233  0.084       
-trt:stagB+H  0.447 -0.466 -0.974 -0.371  0.008 -0.105
-fit warnings:
-fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
-optimizer (nloptwrap) convergence code: 0 (OK)
-boundary (singular) fit: see help('isSingular')</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(c_CPB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(<span class="at">x=</span> pressure, kg_ha, <span class="at">group =</span> pressure)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -550,889 +267,193 @@ boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
 </div>
 </section>
-<section id="nbls" class="level3">
-<h3 class="anchored" data-anchor-id="nbls">NBLS</h3>
+<section id="fitting" class="level3">
+<h3 class="anchored" data-anchor-id="fitting">Fitting</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>c_NBLS <span class="ot">&lt;-</span> <span class="fu">lmer</span>(</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  NBLS <span class="sc">~</span> trt <span class="sc">*</span> stage <span class="sc">+</span> gen <span class="sc">+</span> pressure <span class="sc">+</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>       (<span class="dv">1</span> <span class="sc">|</span> env) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> env<span class="sc">:</span>blk),</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> CERC_PROTH_data</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>fixed-effect model matrix is rank deficient so dropping 1 column / coefficient</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c_NBLS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mix_yld  <span class="ot">&lt;-</span> <span class="fu">lmer</span>(kg_ha <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> ( <span class="dv">1</span> <span class="sc">|</span> blk), <span class="at">data=</span>CERC_PROTH_data, <span class="at">REML=</span>F)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mix_yld1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(kg_ha <span class="sc">~</span> pressure <span class="sc">+</span> (pressure <span class="sc">|</span> blk), <span class="at">data=</span>CERC_PROTH_data, <span class="at">REML=</span>F)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>mix_yld2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(kg_ha <span class="sc">~</span> pressure <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> pressure), <span class="at">data=</span>CERC_PROTH_data, <span class="at">REML=</span>F)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>mix_yld3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(kg_ha <span class="sc">~</span> pressure <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> blk), <span class="at">data=</span>CERC_PROTH_data, <span class="at">REML=</span>F)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>mix_yld4 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(kg_ha <span class="sc">~</span> pressure <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> trt<span class="sc">/</span>blk), <span class="at">data=</span>CERC_PROTH_data, <span class="at">REML=</span>F)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>mix_yld5 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(kg_ha <span class="sc">~</span> pressure <span class="sc">*</span> rate <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">|</span> trt<span class="sc">/</span>blk), <span class="at">data=</span>CERC_PROTH_data, <span class="at">REML=</span>F)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>mix_yld6 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(kg_ha <span class="sc">~</span> pressure <span class="sc">*</span> rate <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">|</span> pressure<span class="sc">/</span>blk), <span class="at">data=</span>CERC_PROTH_data, <span class="at">REML=</span>F)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>mix_yld7 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(kg_ha <span class="sc">~</span> rate <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">|</span> trt<span class="sc">/</span>blk), <span class="at">data=</span>CERC_PROTH_data, <span class="at">REML=</span>F)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(mix_yld, mix_yld1, mix_yld2, mix_yld3, mix_yld4, mix_yld5, mix_yld6, mix_yld7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-          npar Sum Sq Mean Sq F value
-trt          1 0.1044 0.10436  0.2504
-stage        2 3.2367 1.61837  3.8836
-gen          1 0.1684 0.16842  0.4042
-pressure     1 0.0492 0.04920  0.1181
-trt:stage    1 0.1858 0.18585  0.4460</code></pre>
+<pre><code>         df      AIC
+mix_yld   3 1038.289
+mix_yld1  6 1028.130
+mix_yld2  4 1024.130
+mix_yld3  4 1024.130
+mix_yld4  5 1026.130
+mix_yld5 11 1033.786
+mix_yld6 11 1033.786
+mix_yld7  7 1045.206</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c_NBLS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(mix_yld, mix_yld1, mix_yld2, mix_yld3, mix_yld4, mix_yld5, mix_yld6, mix_yld7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML ['lmerMod']
-Formula: NBLS ~ trt * stage + gen + pressure + (1 | env) + (1 | env:blk)
+<pre><code>         df      BIC
+mix_yld   3 1044.813
+mix_yld1  6 1041.177
+mix_yld2  4 1032.828
+mix_yld3  4 1032.828
+mix_yld4  5 1037.002
+mix_yld5 11 1057.704
+mix_yld6 11 1057.704
+mix_yld7  7 1060.427</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mix_yld5, mix_yld6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Data: CERC_PROTH_data
+Models:
+mix_yld5: kg_ha ~ pressure * rate * (1 | trt/blk)
+mix_yld6: kg_ha ~ pressure * rate * (1 | pressure/blk)
+         npar    AIC    BIC  logLik -2*log(L) Chisq Df Pr(&gt;Chisq)
+mix_yld5   11 1033.8 1057.7 -505.89    1011.8                    
+mix_yld6   11 1033.8 1057.7 -505.89    1011.8     0  0           </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mix_yld5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by maximum likelihood  ['lmerMod']
+Formula: kg_ha ~ pressure * rate * (1 | trt/blk)
    Data: CERC_PROTH_data
 
-REML criterion at convergence: 137.1
-
-Scaled residuals: 
-     Min       1Q   Median       3Q      Max 
--2.76414 -0.70888  0.09382  0.64742  2.38901 
-
-Random effects:
- Groups   Name        Variance Std.Dev.
- env:blk  (Intercept) 0.01138  0.1067  
- env      (Intercept) 7.09962  2.6645  
- Residual             0.41672  0.6455  
-Number of obs: 65, groups:  env:blk, 11; env, 3
-
-Fixed effects:
-             Estimate Std. Error t value
-(Intercept)    1.7125     1.9408   0.882
-trt            0.2987     0.1451   2.058
-stageB+H       0.3983     1.5882   0.251
-stageUTC       1.0087     0.3759   2.683
-genPVL03      -2.0845     3.2684  -0.638
-pressurelow   -0.1869     0.6944  -0.269
-trt:stageB+H  -0.2078     0.3112  -0.668
-
-Correlation of Fixed Effects:
-            (Intr) trt    stgB+H stgUTC gPVL03 prssrl
-trt         -0.229                                   
-stageB+H    -0.069  0.280                            
-stageUTC    -0.201  0.798  0.246                     
-genPVL03    -0.561 -0.001  0.000 -0.001              
-pressurelow -0.068  0.232  0.078  0.239  0.005       
-trt:stagB+H  0.107 -0.466 -0.974 -0.372  0.000 -0.108
-fit warnings:
-fixed-effect model matrix is rank deficient so dropping 1 column / coefficient</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(c_NBLS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="grafic-nbls-1" class="level3">
-<h3 class="anchored" data-anchor-id="grafic-nbls-1">Grafic NBLS</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, <span class="at">fill =</span> <span class="fu">as.factor</span>(NBLS))) <span class="sc">+</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env) <span class="sc">+</span></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"plot ratio"</span>,</span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"NBLS"</span>,</span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Occurrence of NBLS by treatment"</span></span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, NBLS)) <span class="sc">+</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> stage) <span class="sc">+</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"NBLS severity by treatmento"</span>,</span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Treatment"</span>,</span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"NBLS score"</span></span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="lesion" class="level3">
-<h3 class="anchored" data-anchor-id="lesion">Lesion</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>c_nles <span class="ot">&lt;-</span> <span class="fu">lmer</span>(</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  n_lesion <span class="sc">~</span> trt <span class="sc">*</span> stage <span class="sc">+</span> gen <span class="sc">+</span> pressure <span class="sc">+</span></span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>           (<span class="dv">1</span> <span class="sc">|</span> env) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> env<span class="sc">:</span>blk),</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> CERC_PROTH_data</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>fixed-effect model matrix is rank deficient so dropping 1 column / coefficient</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>boundary (singular) fit: see help('isSingular')</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c_nles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-          npar  Sum Sq Mean Sq F value
-trt          1   1.891   1.891  0.5875
-stage        2  31.388  15.694  4.8749
-gen          1   0.031   0.031  0.0095
-pressure     1 258.804 258.804 80.3895
-trt:stage    1   0.075   0.075  0.0234</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c_nles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML ['lmerMod']
-Formula: n_lesion ~ trt * stage + gen + pressure + (1 | env) + (1 | env:blk)
-   Data: CERC_PROTH_data
-
-REML criterion at convergence: 252
+      AIC       BIC    logLik -2*log(L)  df.resid 
+   1033.8    1057.7    -505.9    1011.8        54 
 
 Scaled residuals: 
     Min      1Q  Median      3Q     Max 
--4.7314 -0.2123  0.0195  0.4168  1.5315 
+-3.7668 -0.3921  0.0587  0.5157  1.9271 
 
 Random effects:
  Groups   Name        Variance Std.Dev.
- env:blk  (Intercept) 0.000    0.000   
- env      (Intercept) 4.337    2.083   
- Residual             3.219    1.794   
-Number of obs: 65, groups:  env:blk, 11; env, 3
+ blk:trt  (Intercept)      0     0.0   
+ trt      (Intercept)      0     0.0   
+ Residual             337076   580.6   
+Number of obs: 65, groups:  blk:trt, 24; trt, 6
 
 Fixed effects:
-             Estimate Std. Error t value
-(Intercept)   48.2382     1.9560  24.662
-trt            0.1405     0.4029   0.349
-stageB+H      -2.6667     4.4139  -0.604
-stageUTC      -0.4436     1.0438  -0.425
-genPVL03      -0.6830     2.5935  -0.263
-pressurelow  -17.0734     1.9118  -8.931
-trt:stageB+H   0.1323     0.8647   0.153
+                    Estimate Std. Error t value
+(Intercept)          5276.93     193.53  27.267
+pressurelow           642.09     256.01   2.508
+rate2x                258.89     256.01   1.011
+rate4x                332.34     305.99   1.086
+rateUTC              -279.77     387.05  -0.723
+pressurelow:rate2x    -83.06     356.85  -0.233
+pressurelow:rate4x   -159.60     434.90  -0.367
+pressurelow:rateUTC   563.16     469.08   1.201
 
 Correlation of Fixed Effects:
-            (Intr) trt    stgB+H stgUTC gPVL03 prssrl
-trt         -0.631                                   
-stageB+H    -0.189  0.280                            
-stageUTC    -0.554  0.797  0.246                     
-genPVL03    -0.442 -0.002 -0.001 -0.002              
-pressurelow -0.185  0.230  0.077  0.237  0.018       
-trt:stagB+H  0.294 -0.466 -0.974 -0.372  0.001 -0.107
-fit warnings:
-fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+            (Intr) prssrl rate2x rate4x ratUTC prss:2 prss:4
+pressurelow -0.756                                          
+rate2x      -0.756  0.571                                   
+rate4x      -0.632  0.478  0.478                            
+rateUTC     -0.500  0.378  0.378  0.316                     
+prssrlw:rt2  0.542 -0.717 -0.717 -0.343 -0.271              
+prssrlw:rt4  0.445 -0.589 -0.336 -0.704 -0.222  0.422       
+prssrlw:UTC  0.413 -0.546 -0.312 -0.261 -0.825  0.392  0.321
 optimizer (nloptwrap) convergence code: 0 (OK)
 boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(c_nles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="yeald" class="level3">
-<h3 class="anchored" data-anchor-id="yeald">Yeald</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>c_yld_disease <span class="ot">&lt;-</span> <span class="fu">lmer</span>(</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  yld_h <span class="sc">~</span> NBLS <span class="sc">+</span> CPB <span class="sc">+</span> n_lesion <span class="sc">+</span> inc <span class="sc">+</span> gen <span class="sc">+</span> pressure <span class="sc">+</span></span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>        (<span class="dv">1</span> <span class="sc">|</span> env) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> env<span class="sc">:</span>blk),</span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> CERC_PROTH_data</span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>fixed-effect model matrix is rank deficient so dropping 1 column / coefficient</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>boundary (singular) fit: see help('isSingular')</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c_yld_disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mix_yld6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-         npar Sum Sq Mean Sq F value
-NBLS        1 156319  156319  0.9526
-CPB         1 959786  959786  5.8487
-n_lesion    1 275244  275244  1.6773
-gen         1 153374  153374  0.9346
-pressure    1 515364  515364  3.1405</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c_yld_disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML ['lmerMod']
-Formula: yld_h ~ NBLS + CPB + n_lesion + inc + gen + pressure + (1 | env) +  
-    (1 | env:blk)
+<pre><code>Linear mixed model fit by maximum likelihood  ['lmerMod']
+Formula: kg_ha ~ pressure * rate * (1 | pressure/blk)
    Data: CERC_PROTH_data
 
-REML criterion at convergence: 899.7
+      AIC       BIC    logLik -2*log(L)  df.resid 
+   1033.8    1057.7    -505.9    1011.8        54 
 
 Scaled residuals: 
     Min      1Q  Median      3Q     Max 
--3.2039 -0.6921  0.1749  0.6533  2.3464 
+-3.7668 -0.3921  0.0587  0.5157  1.9271 
 
 Random effects:
- Groups   Name        Variance  Std.Dev. 
- env:blk  (Intercept) 2.093e-05 4.575e-03
- env      (Intercept) 4.086e+05 6.392e+02
- Residual             1.641e+05 4.051e+02
-Number of obs: 65, groups:  env:blk, 11; env, 3
+ Groups       Name        Variance Std.Dev.
+ blk:pressure (Intercept)      0     0.0   
+ pressure     (Intercept)      0     0.0   
+ Residual                 337076   580.6   
+Number of obs: 65, groups:  blk:pressure, 8; pressure, 2
+
+Fixed effects:
+                    Estimate Std. Error t value
+(Intercept)          5276.93     193.53  27.267
+pressurelow           642.09     256.01   2.508
+rate2x                258.89     256.01   1.011
+rate4x                332.34     305.99   1.086
+rateUTC              -279.77     387.05  -0.723
+pressurelow:rate2x    -83.06     356.85  -0.233
+pressurelow:rate4x   -159.60     434.90  -0.367
+pressurelow:rateUTC   563.16     469.08   1.201
+
+Correlation of Fixed Effects:
+            (Intr) prssrl rate2x rate4x ratUTC prss:2 prss:4
+pressurelow -0.756                                          
+rate2x      -0.756  0.571                                   
+rate4x      -0.632  0.478  0.478                            
+rateUTC     -0.500  0.378  0.378  0.316                     
+prssrlw:rt2  0.542 -0.717 -0.717 -0.343 -0.271              
+prssrlw:rt4  0.445 -0.589 -0.336 -0.704 -0.222  0.422       
+prssrlw:UTC  0.413 -0.546 -0.312 -0.261 -0.825  0.392  0.321
+optimizer (nloptwrap) convergence code: 0 (OK)
+boundary (singular) fit: see help('isSingular')</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mix_yld7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by maximum likelihood  ['lmerMod']
+Formula: kg_ha ~ rate * (1 | trt/blk)
+   Data: CERC_PROTH_data
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+   1045.2    1060.4    -515.6    1031.2        58 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.8359 -0.5898  0.1982  0.6635  1.8036 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ blk:trt  (Intercept)      0     0.0   
+ trt      (Intercept)      0     0.0   
+ Residual             454447   674.1   
+Number of obs: 65, groups:  blk:trt, 24; trt, 6
 
 Fixed effects:
             Estimate Std. Error t value
-(Intercept)  4495.52    1467.25   3.064
-NBLS           52.84      77.81   0.679
-CPB           112.13      49.03   2.287
-n_lesion       13.42      28.52   0.470
-genPVL03      860.71     805.58   1.068
-pressurelow  1117.80     630.76   1.772
+(Intercept)   5643.8      147.1  38.366
+rate2x         146.1      205.7   0.710
+rate4x         184.7      250.9   0.736
+rateUTC        229.9      250.9   0.916
 
 Correlation of Fixed Effects:
-            (Intr) NBLS   CPB    n_lesn gPVL03
-NBLS        -0.295                            
-CPB          0.205 -0.309                     
-n_lesion    -0.940  0.188 -0.255              
-genPVL03    -0.248  0.190 -0.019  0.049       
-pressurelow -0.717  0.194 -0.167  0.748  0.058
-fit warnings:
-fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+        (Intr) rate2x rate4x
+rate2x  -0.715              
+rate4x  -0.586  0.419       
+rateUTC -0.586  0.419  0.344
 optimizer (nloptwrap) convergence code: 0 (OK)
 boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(c_yld_disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="grafic-yeald" class="level3">
-<h3 class="anchored" data-anchor-id="grafic-yeald">Grafic Yeald</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>p_yldh_trt_env <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, yld_h)) <span class="sc">+</span></span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Yield (yld_h) / treatment"</span>, <span class="at">x=</span><span class="st">"trt"</span>, <span class="at">y=</span><span class="st">"yld_h"</span>)</span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>p_yldh_trt_env</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>p_yldh_trt_stage <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, yld_h)) <span class="sc">+</span></span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(stage <span class="sc">~</span> env, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"yld_h / treatment, separated by stage and environment"</span>, <span class="at">x=</span><span class="st">"trt"</span>, <span class="at">y=</span><span class="st">"yld_h"</span>)</span>
-<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a>p_yldh_trt_stage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>p_yldh_NBLS <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(NBLS, yld_h)) <span class="sc">+</span></span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Yield / NBLS"</span>, <span class="at">x=</span><span class="st">"NBLS"</span>, <span class="at">y=</span><span class="st">"yld_h"</span>)</span>
-<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a>p_yldh_CPB <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(CPB, yld_h)) <span class="sc">+</span></span>
-<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span> env, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb85-12"><a href="#cb85-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb85-13"><a href="#cb85-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Yield / CPB"</span>, <span class="at">x=</span><span class="st">"CBP"</span>, <span class="at">y=</span><span class="st">"yld_h"</span>)</span>
-<span id="cb85-14"><a href="#cb85-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-15"><a href="#cb85-15" aria-hidden="true" tabindex="-1"></a>p_yldh_Nles <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(n_lesion, yld_h)) <span class="sc">+</span></span>
-<span id="cb85-16"><a href="#cb85-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb85-17"><a href="#cb85-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb85-18"><a href="#cb85-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span> env, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb85-19"><a href="#cb85-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb85-20"><a href="#cb85-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Yield / Number of Lesion"</span>, <span class="at">x=</span><span class="st">"N of lesion"</span>, <span class="at">y=</span><span class="st">"yld_h"</span>)</span>
-<span id="cb85-21"><a href="#cb85-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-22"><a href="#cb85-22" aria-hidden="true" tabindex="-1"></a> p_yldh_NBLS <span class="sc">/</span> p_yldh_CPB <span class="sc">/</span> p_yldh_Nles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>p_yldh_CPB <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(CPB, yld_h)) <span class="sc">+</span></span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.35</span>) <span class="sc">+</span></span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env) <span class="sc">+</span></span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"yld_h vs CPB"</span>, <span class="at">x=</span><span class="st">"CPB"</span>, <span class="at">y=</span><span class="st">"yld_h"</span>)</span>
-<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a>p_yldh_NBLS <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(NBLS, yld_h)) <span class="sc">+</span></span>
-<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.35</span>) <span class="sc">+</span></span>
-<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env) <span class="sc">+</span></span>
-<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"yld_h vs NBLS"</span>, <span class="at">x=</span><span class="st">"NBLS"</span>, <span class="at">y=</span><span class="st">"yld_h"</span>)</span>
-<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-13"><a href="#cb92-13" aria-hidden="true" tabindex="-1"></a>p_yldh_Nles <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(n_lesion, yld_h)) <span class="sc">+</span></span>
-<span id="cb92-14"><a href="#cb92-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.35</span>) <span class="sc">+</span></span>
-<span id="cb92-15"><a href="#cb92-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb92-16"><a href="#cb92-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env) <span class="sc">+</span></span>
-<span id="cb92-17"><a href="#cb92-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"yld_h vs Number of Lesion"</span>, <span class="at">x=</span><span class="st">"n_lesion"</span>, <span class="at">y=</span><span class="st">"yld_h"</span>)</span>
-<span id="cb92-18"><a href="#cb92-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-19"><a href="#cb92-19" aria-hidden="true" tabindex="-1"></a>p_yldh_CPB <span class="sc">/</span> p_yldh_NBLS <span class="sc">/</span> p_yldh_Nles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'
-`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="total" class="level3">
-<h3 class="anchored" data-anchor-id="total">Total</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>c_total <span class="ot">&lt;-</span> <span class="fu">lmer</span>(</span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  total <span class="sc">~</span> gen <span class="sc">*</span> trt <span class="sc">+</span></span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>       (<span class="dv">1</span> <span class="sc">|</span> env) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> env<span class="sc">:</span>blk),</span>
-<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> CERC_PROTH_data</span>
-<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>boundary (singular) fit: see help('isSingular')</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>YLD_emm_kg <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(mix_yld5, <span class="sc">~</span> rate <span class="sc">*</span> pressure)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cld</span>(YLD_emm_kg, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">Letters =</span> letters))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML ['lmerMod']
-Formula: total ~ gen * trt + (1 | env) + (1 | env:blk)
-   Data: CERC_PROTH_data
+<pre><code> rate pressure emmean  SE    df lower.CL upper.CL .group
+ UTC  high       4997 362 25.09     4251     5743  a    
+ 1x   high       5277 211 12.93     4821     5733  a    
+ 2x   high       5536 185  7.40     5103     5968  a    
+ 4x   high       5609 255  7.77     5017     6201  a    
+ 1x   low        5919 184  7.40     5489     6349  a    
+ 4x   low        6092 284 11.00     5468     6716  a    
+ 2x   low        6095 203 10.19     5643     6547  a    
+ UTC  low        6202 220  4.45     5616     6788  a    
 
-REML criterion at convergence: 251.3
-
-Scaled residuals: 
-    Min      1Q  Median      3Q     Max 
--4.5813 -0.2685  0.0495  0.4896  1.2839 
-
-Random effects:
- Groups   Name        Variance Std.Dev.
- env:blk  (Intercept)  0.000   0.000   
- env      (Intercept) 14.343   3.787   
- Residual              2.743   1.656   
-Number of obs: 64, groups:  env:blk, 11; env, 3
-
-Fixed effects:
-             Estimate Std. Error t value
-(Intercept)   73.0489     2.7418  26.642
-genPVL03      -2.7975     4.7429  -0.590
-trt           -0.1133     0.1498  -0.757
-genPVL03:trt   0.2056     0.2510   0.819
-
-Correlation of Fixed Effects:
-            (Intr) gnPVL03 trt   
-genPVL03    -0.578               
-trt         -0.192  0.111        
-gnPVL03:trt  0.115 -0.188  -0.597
-optimizer (nloptwrap) convergence code: 0 (OK)
-boundary (singular) fit: see help('isSingular')</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-        npar  Sum Sq Mean Sq F value
-gen        1 0.54159 0.54159  0.1975
-trt        1 0.30480 0.30480  0.1111
-gen:trt    1 1.84132 1.84132  0.6714</code></pre>
-</div>
-</div>
-</section>
-<section id="head" class="level3">
-<h3 class="anchored" data-anchor-id="head">Head</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>c_head <span class="ot">&lt;-</span> <span class="fu">lmer</span>(</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>  head <span class="sc">~</span> gen <span class="sc">*</span> trt <span class="sc">+</span></span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>       (<span class="dv">1</span> <span class="sc">|</span> env) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> env<span class="sc">:</span>blk),</span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> CERC_PROTH_data</span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>boundary (singular) fit: see help('isSingular')</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c_head)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Linear mixed model fit by REML ['lmerMod']
-Formula: head ~ gen * trt + (1 | env) + (1 | env:blk)
-   Data: CERC_PROTH_data
-
-REML criterion at convergence: 318.4
-
-Scaled residuals: 
-    Min      1Q  Median      3Q     Max 
--4.0985 -0.4806  0.1860  0.6840  1.3250 
-
-Random effects:
- Groups   Name        Variance Std.Dev.
- env:blk  (Intercept)  0.00    0.000   
- env      (Intercept) 21.54    4.642   
- Residual              8.49    2.914   
-Number of obs: 64, groups:  env:blk, 11; env, 3
-
-Fixed effects:
-             Estimate Std. Error t value
-(Intercept)   52.2937     3.4414  15.195
-genPVL03      -3.0217     5.9457  -0.508
-trt           -0.3509     0.2635  -1.331
-genPVL03:trt   0.3356     0.4415   0.760
-
-Correlation of Fixed Effects:
-            (Intr) gnPVL03 trt   
-genPVL03    -0.579               
-trt         -0.269  0.156        
-gnPVL03:trt  0.161 -0.263  -0.597
-optimizer (nloptwrap) convergence code: 0 (OK)
-boundary (singular) fit: see help('isSingular')</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c_head)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-        npar  Sum Sq Mean Sq F value
-gen        1  0.8765  0.8765  0.1032
-trt        1 10.1625 10.1625  1.1970
-gen:trt    1  4.9045  4.9045  0.5777</code></pre>
-</div>
-</div>
-</section>
-<section id="grafic-total-head" class="level3">
-<h3 class="anchored" data-anchor-id="grafic-total-head">Grafic Total / Head</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>p_total_trt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, total)) <span class="sc">+</span></span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span><span class="fl">0.15</span>, <span class="at">alpha=</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales=</span><span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Total (%) / treatment"</span>, <span class="at">x=</span><span class="st">"trt"</span>, <span class="at">y=</span><span class="st">"total"</span>)</span>
-<span id="cb106-7"><a href="#cb106-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-8"><a href="#cb106-8" aria-hidden="true" tabindex="-1"></a>p_head_trt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(trt, head)) <span class="sc">+</span></span>
-<span id="cb106-9"><a href="#cb106-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb106-10"><a href="#cb106-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span><span class="fl">0.15</span>, <span class="at">alpha=</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb106-11"><a href="#cb106-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales=</span><span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb106-12"><a href="#cb106-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb106-13"><a href="#cb106-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Head (%) / treatment"</span>, <span class="at">x=</span><span class="st">"trt"</span>, <span class="at">y=</span><span class="st">"head"</span>)</span>
-<span id="cb106-14"><a href="#cb106-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-15"><a href="#cb106-15" aria-hidden="true" tabindex="-1"></a>p_total_trt <span class="sc">/</span> p_head_trt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>p_total_CPB <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(CPB, total)) <span class="sc">+</span></span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span><span class="fl">0.15</span>, <span class="at">alpha=</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales=</span><span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Total (%) / CPB(0-9)"</span>, <span class="at">x=</span><span class="st">"CPB"</span>, <span class="at">y=</span><span class="st">"total"</span>)</span>
-<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a>p_head_CPB <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(CPB, head)) <span class="sc">+</span></span>
-<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb115-10"><a href="#cb115-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span><span class="fl">0.15</span>, <span class="at">alpha=</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb115-11"><a href="#cb115-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales=</span><span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb115-12"><a href="#cb115-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb115-13"><a href="#cb115-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Head (%) / CPB (0-9)"</span>, <span class="at">x=</span><span class="st">"CPB"</span>, <span class="at">y=</span><span class="st">"head"</span>)</span>
-<span id="cb115-14"><a href="#cb115-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-15"><a href="#cb115-15" aria-hidden="true" tabindex="-1"></a>p_total_CPB <span class="sc">/</span> p_head_CPB </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>p_total_NBLS <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(NBLS, total)) <span class="sc">+</span></span>
-<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span><span class="fl">0.15</span>, <span class="at">alpha=</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb124-4"><a href="#cb124-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales=</span><span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb124-5"><a href="#cb124-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb124-6"><a href="#cb124-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Total (%) / NBLS (0-9)"</span>, <span class="at">x=</span><span class="st">"NBLS"</span>, <span class="at">y=</span><span class="st">"total"</span>)</span>
-<span id="cb124-7"><a href="#cb124-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-8"><a href="#cb124-8" aria-hidden="true" tabindex="-1"></a>p_head_NBLS <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CERC_PROTH_data, <span class="fu">aes</span>(NBLS, head)) <span class="sc">+</span></span>
-<span id="cb124-9"><a href="#cb124-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb124-10"><a href="#cb124-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span><span class="fl">0.15</span>, <span class="at">alpha=</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb124-11"><a href="#cb124-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> env, <span class="at">scales=</span><span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb124-12"><a href="#cb124-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb124-13"><a href="#cb124-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Head (%) / NBLS (0-9)"</span>, <span class="at">x=</span><span class="st">"NBLS"</span>, <span class="at">y=</span><span class="st">"head"</span>)</span>
-<span id="cb124-14"><a href="#cb124-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-15"><a href="#cb124-15" aria-hidden="true" tabindex="-1"></a>p_total_NBLS <span class="sc">/</span> p_head_NBLS </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Orientation is not uniquely specified when both the x and y aesthetics are
-continuous. Picking default orientation 'x'.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Continuous x aesthetic
-ℹ did you forget `aes(group = ...)`?</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="emmeans" class="level3">
-<h3 class="anchored" data-anchor-id="emmeans">Emmeans</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>emm_inc <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(c_inc, <span class="sc">~</span> trt <span class="sc">|</span> stage)</span>
-<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(emm_inc, <span class="at">Letters =</span> letters, <span class="at">level =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>stage = B:
-  trt emmean   SE   df lower.CL upper.CL .group
- 3.52   79.7 3.30 2.47     79.5     79.9  a    
-
-stage = B+H:
-  trt emmean   SE   df lower.CL upper.CL .group
- 3.52   75.3 4.49 8.12     75.0     75.6  a    
-
-stage = UTC:
-  trt emmean   SE   df lower.CL upper.CL .group
- 3.52 nonEst   NA   NA       NA       NA       
-
-Results are averaged over the levels of: gen, pressure 
 Degrees-of-freedom method: kenward-roger 
-Confidence level used: 0.05 
+Confidence level used: 0.95 
+P value adjustment: tukey method for comparing a family of 8 estimates 
 significance level used: alpha = 0.05 
 NOTE: If two or more means share the same grouping symbol,
       then we cannot show them to be different.
       But we also did not show them to be the same. </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>emm_CPB <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(c_CPB, <span class="sc">~</span> trt <span class="sc">|</span> stage)</span>
-<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(emm_CPB, <span class="at">Letters =</span> letters, <span class="at">level =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>stage = B:
-  trt emmean    SE   df lower.CL upper.CL .group
- 3.52  1.923 0.667 45.7    1.881    1.965  a    
-
-stage = B+H:
-  trt emmean    SE   df lower.CL upper.CL .group
- 3.52  0.629 1.150 53.1    0.556    0.702  a    
-
-stage = UTC:
-  trt emmean    SE   df lower.CL upper.CL .group
- 3.52 nonEst    NA   NA       NA       NA       
-
-Results are averaged over the levels of: gen, pressure 
-Degrees-of-freedom method: kenward-roger 
-Confidence level used: 0.05 
-significance level used: alpha = 0.05 
-NOTE: If two or more means share the same grouping symbol,
-      then we cannot show them to be different.
-      But we also did not show them to be the same. </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>emm_NBLS <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(c_NBLS, <span class="sc">~</span> trt <span class="sc">|</span> stage)</span>
-<span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(emm_NBLS, <span class="at">Letters =</span> letters, <span class="at">level =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>stage = B:
-  trt emmean   SE   df lower.CL upper.CL .group
- 3.52   1.63 1.68 1.10     1.50     1.76  a    
-
-stage = B+H:
-  trt emmean   SE   df lower.CL upper.CL .group
- 3.52   1.30 1.76 1.35     1.16     1.43  a    
-
-stage = UTC:
-  trt emmean   SE   df lower.CL upper.CL .group
- 3.52 nonEst   NA   NA       NA       NA       
-
-Results are averaged over the levels of: gen, pressure 
-Degrees-of-freedom method: kenward-roger 
-Confidence level used: 0.05 
-significance level used: alpha = 0.05 
-NOTE: If two or more means share the same grouping symbol,
-      then we cannot show them to be different.
-      But we also did not show them to be the same. </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>emm_nles <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(c_nles, <span class="sc">~</span> trt <span class="sc">|</span> stage)</span>
-<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(emm_nles, <span class="at">Letters =</span> letters, <span class="at">level =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>stage = B:
-  trt emmean   SE   df lower.CL upper.CL .group
- 3.52   39.9 1.65 2.47     39.7     40.0  a    
-
-stage = B+H:
-  trt emmean   SE   df lower.CL upper.CL .group
- 3.52   37.7 2.25 8.12     37.5     37.8  a    
-
-stage = UTC:
-  trt emmean   SE   df lower.CL upper.CL .group
- 3.52 nonEst   NA   NA       NA       NA       
-
-Results are averaged over the levels of: gen, pressure 
-Degrees-of-freedom method: kenward-roger 
-Confidence level used: 0.05 
-significance level used: alpha = 0.05 
-NOTE: If two or more means share the same grouping symbol,
-      then we cannot show them to be different.
-      But we also did not show them to be the same. </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(emm_CPB) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"CPB control by treatment and stage"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_segment()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(emm_inc) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_segment()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Incidence by treatment and stage"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;ggplot2::labels&gt; List of 1
- $ title: chr "Incidence by treatment and stage"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(emm_NBLS) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_segment()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-23-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NBLS control by treatment and stage"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;ggplot2::labels&gt; List of 1
- $ title: chr "NBLS control by treatment and stage"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(emm_nles) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_segment()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-23-4.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb161"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Lesion by treatment and stage"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;ggplot2::labels&gt; List of 1
- $ title: chr "Lesion by treatment and stage"</code></pre>
 </div>
 </div>
 </section>
