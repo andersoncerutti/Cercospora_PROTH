@@ -1,23 +1,30 @@
 ---
 title: "Analysis Cercospora Proth"
 author: "Anderson Cerutti"
-format: html
-editor: visual
-message: false
+format:
+  html:
+    code-fold: false
+    smooth-scroll: true
+    fig-width: 16
+    fig-height: 10
+    css: styles.css
+    self-contained: true
+    df-print: paged
+    #code-tools:
+      #source: true
+      #toggle: true
+      #caption: "Source code"
+theme: "lumen"
+toc: true
+toc-location: left
+toc-depth: 10
+fontcolor: "black" # {html} Color of text.
+linkcolor: "#007FFF" # {html, pdf, beamer} Color of link text.
+reference-location: "margin"
+colortheme: "black"
+highlight: monochrome
 warning: false
-date: "25 February"
-output: 
-  html_document:
-    toc: yes
-    toc_depth: 3
-    number_sections: true
-    toc_float: 
-      collapsed: true
-    code_folding: hide
-    theme: united
-description: "some description ..."
-editor_options: 
-  chunk_output_type: inline
+cache: true
 ---
 
 # Data and packages
